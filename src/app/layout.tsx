@@ -14,8 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: "Decamond",
-    description: "A test project for Decamond",
+    title: "Decamond Auth Demo",
+    description: "A simple client-side authentication system with Next.js, TypeScript, and Tailwind.",
+    keywords: ["Next.js", "Authentication", "Tailwind", "TypeScript", "shadcn/ui"],
+    authors: [{ name: "Mohammad Hemmat Nia" }],
 };
 
 export default function RootLayout({

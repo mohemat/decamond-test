@@ -111,7 +111,9 @@ export function LoginForm({
                                         </FormItem>
                                     )}
                                 />
-                                <Button disabled={randomUsersQuery.isLoading || randomUsersQuery.isRefetching}
+                                <Button
+                                    aria-busy={randomUsersQuery.isLoading || randomUsersQuery.isRefetching}
+                                    disabled={randomUsersQuery.isLoading || randomUsersQuery.isRefetching}
                                         type="submit" className="w-full">
                                     {(randomUsersQuery.isLoading || randomUsersQuery.isRefetching) ?
                                         <MoonLoader color={'#ffffff'} size={20}/>
