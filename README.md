@@ -16,9 +16,9 @@ It is a test assignment with the following flow:
 
 🚀 Demo
 
-Live Preview: [Vercel Deployment Link](http://localhost:3000)
+Live Preview: [https://decamond-test.vercel.app](https://decamond-test.vercel.app)
 
-Repository: [GitHub Repo Link](https://github.com/mohemat/decamond-test)
+Repository: [https://github.com/mohemat/decamond-test](https://github.com/mohemat/decamond-test)
 
 📦 Features
 
@@ -51,8 +51,8 @@ API: used [bulletproof-react](https://github.com/alan2207/bulletproof-react) con
 ▶️ Getting Started
 1. Clone the repo
 ```bash
-git clone https://github.com/mohemat/decamond-test
-cd https://github.com/mohemat/decamond-test
+git clone https://github.com/mohemat/decamond-test.git
+cd decamond-test
 ```
 
 2. Install dependencies
