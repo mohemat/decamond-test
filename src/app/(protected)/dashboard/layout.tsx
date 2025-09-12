@@ -1,7 +1,7 @@
 'use client'
 import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/layout/app-sidebar";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {useUser} from "@/components/providers/UserProvider";
 import {ModeToggle} from "@/components/layout/ModeToggle";
@@ -15,8 +15,9 @@ export default function DashboardLayout({
     const {user} = useUser()
 
     useEffect(() => {
-        if (!user) router.replace("/login");
+        if (!user?.name) router.replace("/login");
     }, [user]);
+
 
     if (user?.name)
         return (

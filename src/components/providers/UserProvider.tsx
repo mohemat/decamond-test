@@ -13,7 +13,12 @@ interface UserContextType {
 const UserStore = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<UserStorage | null>(null);
+    const [user, setUser] = useState<UserStorage | null>(() => {
+        if (typeof window !== "undefined") {
+            return getUser();
+        }
+        return null;
+    });
     const router = useRouter()
     const [userLoggedIn, setUserLoggedIn] = useState<boolean | null>(null);
 

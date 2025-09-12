@@ -50,7 +50,6 @@ export function LoginForm({
     function onSubmit() {
         randomUsersQuery.refetch().then(({data}) => {
             if (data) {
-                console.log(data)
                 const userData = data.results[0];
                 if (userData) {
                     setUser({name: `${userData.name.title} ${userData.name.first} ${userData.name.last}`, email: userData.email, picture: userData.picture.thumbnail})

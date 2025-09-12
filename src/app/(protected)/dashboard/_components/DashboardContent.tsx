@@ -1,13 +1,13 @@
 'use client'
+
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {logout} from "@/lib/auth";
 import {Button} from "@/components/ui/button";
 import {useRouter} from "next/navigation";
-import {useState} from "react";
-import {UserStorage} from "@/types/user";
+import {useUser} from "@/components/providers/UserProvider";
 
 export default function DashboardContent() {
-    const [user, setUser] = useState<UserStorage | null>(null)
+    const {user, setUser} = useUser()
     const router = useRouter();
 
     const handleLogout = () => {
@@ -15,7 +15,6 @@ export default function DashboardContent() {
         logout()
         router.replace("/login");
     }
-
     return (
         <Card>
             <CardHeader>
@@ -25,7 +24,8 @@ export default function DashboardContent() {
             </CardHeader>
             <CardContent>
                 <p>
-                    Hello, Here's an example of a Dashboard page for Decamond Company. Sorry, I'm not sure if it's Dekamond or
+                    Hello, Here's an example of a Dashboard page for Decamond Company. Sorry, I'm not sure if it's
+                    Dekamond or
                     Decamond :)
                 </p>
                 <div className={'text-center mt-4'}>
