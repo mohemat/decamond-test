@@ -54,3 +54,9 @@ export type RandomUser = {
     };
     nat: string;
 };
+
+export type UserStorage = {
+    name: string | null;
+    email: string | null;
+    picture: string | null;
+}

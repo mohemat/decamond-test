@@ -20,11 +20,17 @@ export async function GET(req: Request) {
 
         const data = await response.json()
         return NextResponse.json(data)
-    } catch (error: any) {
-        console.error("Proxy API error:", error)
+    } catch (error: unknown) {
+        console.error("Proxy API error:", error);
+
+        let message = "Internal Server Error";
+        if (error instanceof Error) {
+            message = error.message;
+        }
+
         return NextResponse.json(
-            { error: "Internal Server Error", details: error.message },
+            { error: "Internal Server Error", details: message },
             { status: 500 }
-        )
+        );
     }
 }

@@ -4,6 +4,7 @@ import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import * as React from 'react';
 import { queryConfig } from '@/lib/react-query';
 import {ThemeProvider} from "@/components/providers/ThemeProvider";
+import {UserProvider} from "@/components/providers/UserProvider";
 
 type AppProviderProps = {
     children: React.ReactNode;
@@ -25,7 +26,9 @@ export const AppProvider = ({children}: AppProviderProps) => {
                 enableSystem
                 disableTransitionOnChange
             >
+                <UserProvider>
                     {children}
+                </UserProvider>
             </ThemeProvider>
         </QueryClientProvider>
     );

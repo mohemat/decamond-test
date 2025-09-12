@@ -9,10 +9,10 @@ import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {MoonLoader} from "react-spinners";
-import {useEffect} from "react";
 import {useRouter} from "next/navigation";
 import {login} from "@/lib/auth";
 import {useRandomUsers} from "@/app/(auth)/login/_apis/useGetRandomUsers";
+import {useUser} from "@/components/providers/UserProvider";
 
 export const loginSchema = z.object({
     phone: z
@@ -32,22 +32,13 @@ export function LoginForm({
                           }: React.ComponentProps<"div">) {
 
     const router = useRouter()
+    const { setUser} = useUser()
 
     const randomUsersQuery = useRandomUsers({
         queryConfig: {
             enabled: false,
         }
     })
-
-    useEffect(() => {
-        if (randomUsersQuery.isSuccess && randomUsersQuery.data) {
-            const userData = randomUsersQuery.data.results[0]
-            if (userData) {
-                login(userData)
-                router.push('/')
-            }
-        }
-    }, [randomUsersQuery.data]);
 
     const form = useForm<LoginSchema>({
         resolver: zodResolver(loginSchema),
@@ -57,7 +48,17 @@ export function LoginForm({
     })
 
     function onSubmit() {
-        randomUsersQuery.refetch()
+        randomUsersQuery.refetch().then(({data}) => {
+            if (data) {
+                console.log(data)
+                const userData = data.results[0];
+                if (userData) {
+                    setUser({name: `${userData.name.title} ${userData.name.first} ${userData.name.last}`, email: userData.email, picture: userData.picture.thumbnail})
+                    login(userData);
+                    router.replace("/dashboard");
+                }
+            }
+        });
     }
 
     return (
@@ -89,6 +90,7 @@ export function LoginForm({
                                                                "ArrowLeft",
                                                                "ArrowRight",
                                                                "Tab",
+                                                               "Enter",
                                                                "+",
                                                            ];
                                                            if (

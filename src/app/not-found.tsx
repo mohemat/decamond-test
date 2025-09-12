@@ -1,20 +1,15 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { isUserLoggedIn } from "@/lib/auth";
-import { Button } from "@/components/ui/button";
+import {useRouter} from "next/navigation";
+import {Button} from "@/components/ui/button";
+import {useUser} from "@/components/providers/UserProvider";
 
 export default function NotFound() {
     const router = useRouter();
-    const [userLoggedIn, setUserLoggedIn] = useState<boolean | null>(null);
-
-    useEffect(() => {
-        setUserLoggedIn(isUserLoggedIn());
-    }, []);
+    const {user} = useUser()
 
     const handleClick = () => {
-        if (userLoggedIn) {
+        if (user) {
             router.replace("/dashboard");
         } else {
             router.replace("/login");
@@ -26,11 +21,9 @@ export default function NotFound() {
             <h1 className="text-6xl font-bold">404</h1>
             <p className="text-lg mt-2">This page could not be found.</p>
 
-            {userLoggedIn !== null && (
-                <Button onClick={handleClick} className="mt-6">
-                    {userLoggedIn ? "Dashboard" : "Login"}
-                </Button>
-            )}
+            <Button onClick={handleClick} className="mt-6">
+                {user ? "Dashboard" : "Login"}
+            </Button>
         </div>
     );
 }
