@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Simple Client-Side Authentication (Next.js + TypeScript + Tailwind + shadcn/ui)
 
-## Getting Started
+This project implements a simple client-side authentication flow using Next.js (App Router), TypeScript, Tailwind CSS, and shadcn/ui.
 
-First, run the development server:
+It is a test assignment with the following flow:
+
+📱 Login page with Iranian mobile number validation
+
+🌐 Calls https://randomuser.me/api/ to fetch mock user data
+
+💾 Stores user info in localStorage
+
+🏠 Dashboard page showing a welcome message and logout button
+
+🚪 Logout clears storage and redirects back to login
+
+🚀 Demo
+
+Live Preview: [Vercel Deployment Link](http://localhost:3000)
+
+Repository: [GitHub Repo Link](https://github.com/mohemat/decamond-test)
+
+📦 Features
+
+✅ Client-side form validation (Iranian mobile formats: 09xxxxxxxxx, +989xxxxxxxxx, 00989xxxxxxxxx)
+
+✅ LocalStorage-based authentication state
+
+✅ Protected dashboard route (redirects to login if not authenticated)
+
+✅ Responsive design (mobile-first) with Tailwind CSS
+
+✅ shadcn/ui components for clean and accessible UI
+
+✅ Accessible inputs and buttons (ARIA attributes, focus styles)
+
+✅ Metadata for SEO and accessibility
+
+Tech Stack
+
+Framework: Next.js 15 (App Router)
+
+Language: TypeScript
+
+Styling: Tailwind CSS + shadcn/ui
+
+Validation: Zod + React Hook Form
+
+API: used [bulletproof-react](https://github.com/alan2207/bulletproof-react) configurations for api-client and react-query
+
+▶️ Getting Started
+1. Clone the repo
+```bash
+git clone https://github.com/mohemat/decamond-test
+cd https://github.com/mohemat/decamond-test
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the dev server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Build & deploy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+🧩 Flow
 
-To learn more about Next.js, take a look at the following resources:
+User opens Login Page → enters valid Iranian mobile number → clicks Login
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+API request → save user data (name, email, picture) into localStorage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Redirect to Dashboard → shows "Welcome {Name}"
 
-## Deploy on Vercel
+Click Logout → clears localStorage → redirect back to login
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🎨 Accessibility (ARIA)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Inputs use aria-invalid, aria-describedby, and focus-visible styles
+
+Buttons include aria-busy when loading
+
+Proper HTML semantics (<form>, <label>, <button>)
+
+🧹 Quality
+
+Modular, reusable components
+
+Zod for runtime + compile-time validation
+
+Responsive, mobile-first UI
+
+📘 License
+
+This project is for assignment/demo purposes only.
